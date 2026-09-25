@@ -14,6 +14,14 @@ export default defineConfig({
       filter: (page) => !page.includes('/404'),
     }),
   ],
+  security: {
+    // CSP estable desde Astro 6: genera un <meta http-equiv="Content-Security-Policy">
+    // por página con los hashes SHA-256 de los scripts/estilos inline (el script
+    // de tema y el del toggle), recalculados solos en cada build. `frame-ancestors`
+    // no funciona en <meta>, así que se complementa con un header CSP mínimo en
+    // nginx/default.conf (ver Fase 5 en 01_arquitectura.md).
+    csp: true,
+  },
   markdown: {
     // Astro 7 usa por defecto el procesador "Sätteri", que no corre
     // remark/rehype: hay que pedir el procesador `unified` de
