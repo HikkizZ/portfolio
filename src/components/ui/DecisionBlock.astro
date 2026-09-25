@@ -5,10 +5,13 @@ interface Props {
   title: string;
   decision: string;
   why: string;
-  discarded: string;
+  /** Opcional: no toda decisión tiene una alternativa descartada registrada. */
+  discarded?: string;
+  /** Opcional: qué haría distinto hoy, con la información actual. */
+  changeToday?: string;
 }
 
-const { title, decision, why, discarded } = Astro.props;
+const { title, decision, why, discarded, changeToday } = Astro.props;
 const t = useTranslations();
 ---
 
@@ -23,9 +26,21 @@ const t = useTranslations();
       <dt class="text-mono text-text-muted">{t.decision.why}</dt>
       <dd class="mt-1 text-body text-text">{why}</dd>
     </div>
-    <div>
-      <dt class="text-mono text-text-muted">{t.decision.discarded}</dt>
-      <dd class="mt-1 text-body text-text">{discarded}</dd>
-    </div>
+    {
+      discarded && (
+        <div>
+          <dt class="text-mono text-text-muted">{t.decision.discarded}</dt>
+          <dd class="mt-1 text-body text-text">{discarded}</dd>
+        </div>
+      )
+    }
+    {
+      changeToday && (
+        <div>
+          <dt class="text-mono text-text-muted">{t.decision.changeToday}</dt>
+          <dd class="mt-1 text-body text-text">{changeToday}</dd>
+        </div>
+      )
+    }
   </dl>
 </div>
