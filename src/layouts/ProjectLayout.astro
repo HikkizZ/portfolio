@@ -34,7 +34,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
       <p>
         <a
           href="/#proyectos"
-          class="text-mono text-text-muted transition-colors duration-150 ease-out hover:text-accent"
+          class="inline-flex min-h-11 items-center text-mono text-text-muted transition-colors duration-150 ease-out hover:text-accent"
         >
           {t.projectDetail.breadcrumb}
         </a>
@@ -70,7 +70,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
           prev && (
             <a
               href={`/proyectos/${prev.id}/`}
-              class="text-text-muted transition-colors duration-150 ease-out hover:text-accent"
+              class="inline-flex min-h-11 items-center text-text-muted transition-colors duration-150 ease-out hover:text-accent"
             >
               {t.projectDetail.previousLabel} {prev.data.title}
             </a>
@@ -82,7 +82,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
           next && (
             <a
               href={`/proyectos/${next.id}/`}
-              class="text-text-muted transition-colors duration-150 ease-out hover:text-accent"
+              class="inline-flex min-h-11 items-center sm:justify-end text-text-muted transition-colors duration-150 ease-out hover:text-accent"
             >
               {t.projectDetail.nextLabel} {next.data.title} {t.projectDetail.nextArrow}
             </a>
