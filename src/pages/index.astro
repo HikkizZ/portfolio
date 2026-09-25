@@ -1,10 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Intro from "../components/sections/Intro.astro";
+import Projects from "../components/sections/Projects.astro";
+import Experience from "../components/sections/Experience.astro";
+import Stack from "../components/sections/Stack.astro";
+import HowIWork from "../components/sections/HowIWork.astro";
+import Contact from "../components/sections/Contact.astro";
 ---
 
 <BaseLayout
-  title="Felipe Miranda Rebolledo"
-  description="Ingeniero Civil en Informática, Full Stack con énfasis en backend."
+  title="Felipe Miranda Rebolledo — Desarrollador Full Stack"
+  description="Ingeniero Civil en Informática, Full Stack con énfasis en backend. Proyectos, experiencia y stack técnico."
 >
-  <p class="container-page py-16 text-body text-text">Portafolio — en construcción.</p>
+  <Intro />
+  <Projects />
+  <Experience />
+  <Stack />
+  <HowIWork />
+  <Contact />
 </BaseLayout>

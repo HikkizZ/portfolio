@@ -1,0 +1,45 @@
+---
+// Sección 6 "contacto" — 02_diseno.md §3.1. Full-width móvil solo en
+// "Escribir correo" (ajuste #9 de 05_revision_fable_1.md / §12.9 de 02_diseno.md);
+// LinkedIn/GitHub van en grid-cols-2.
+import Button from "../ui/Button.astro";
+import Link from "../ui/Link.astro";
+import SectionHeading from "../ui/SectionHeading.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations();
+---
+
+<section
+  id="contacto"
+  aria-labelledby="contacto-heading"
+  class="scroll-mt-[72px] border-t border-border py-16 md:py-24"
+>
+  <div class="container-page">
+    <SectionHeading
+      number={t.home.contact.number}
+      title={t.home.contact.heading}
+      id="contacto-heading"
+    />
+    <p class="mt-2 text-body text-text-muted">{site.availability}</p>
+
+    <div class="mt-8 flex flex-col gap-3 sm:max-w-xs">
+      <Button variant="primary" href={`mailto:${site.email}`} fullWidthMobile>
+        {t.home.contact.writeEmail}
+      </Button>
+      <div class="grid grid-cols-2 gap-3">
+        <Button variant="secondary" href={site.linkedin} external>
+          {t.footer.linkedin}
+        </Button>
+        <Button variant="secondary" href={site.github} external>
+          {t.footer.github}
+        </Button>
+      </div>
+    </div>
+
+    <p class="mt-4">
+      <Link href={site.cvPath} download>{t.home.contact.downloadCv}</Link>
+    </p>
+  </div>
+</section>

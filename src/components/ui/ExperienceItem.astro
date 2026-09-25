@@ -1,0 +1,32 @@
+---
+// Ítem de la lista de experiencia — 02_diseno.md §6.6.
+interface Props {
+  dateRange: string;
+  role: string;
+  org: string;
+  context?: string;
+  highlights: string[];
+}
+
+const { dateRange, role, org, context, highlights } = Astro.props;
+---
+
+<li class="grid grid-cols-1 gap-3 py-6 first:pt-0 md:grid-cols-[160px_1fr] md:gap-6">
+  <p class="text-mono text-text-muted">{dateRange}</p>
+  <div>
+    <h3 class="text-h3 text-text">{role} · {org}</h3>
+    {context && <p class="mt-1 text-small text-text-muted">{context}</p>}
+    <ul role="list" class="mt-3 flex flex-col gap-2">
+      {
+        highlights.map((item) => (
+          <li class="flex gap-2 text-body text-text">
+            <span aria-hidden="true" class="text-text-muted">
+              •
+            </span>
+            <span>{item}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</li>

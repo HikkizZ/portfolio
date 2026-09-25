@@ -1,0 +1,45 @@
+---
+// Sección 3 "experiencia" — 02_diseno.md §3.1/§6.6.
+import { getCollection, type CollectionEntry } from "astro:content";
+import SectionHeading from "../ui/SectionHeading.astro";
+import ExperienceItem from "../ui/ExperienceItem.astro";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations();
+const entries = (await getCollection("experience", ({ data }) => !data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+function dateRange(data: CollectionEntry<"experience">["data"]) {
+  if (data.current) return `${data.start} — Actual`;
+  if (data.end) return `${data.start} — ${data.end}`;
+  return data.start;
+}
+---
+
+<section
+  id="experiencia"
+  aria-labelledby="experiencia-heading"
+  class="scroll-mt-[72px] border-t border-border py-16 md:py-24"
+>
+  <div class="container-page">
+    <SectionHeading
+      number={t.home.experience.number}
+      title={t.home.experience.heading}
+      id="experiencia-heading"
+    />
+    <ol class="mt-8 divide-y divide-border">
+      {
+        entries.map((entry) => (
+          <ExperienceItem
+            dateRange={dateRange(entry.data)}
+            role={entry.data.role}
+            org={entry.data.org}
+            context={entry.data.context}
+            highlights={entry.data.highlights}
+          />
+        ))
+      }
+    </ol>
+  </div>
+</section>

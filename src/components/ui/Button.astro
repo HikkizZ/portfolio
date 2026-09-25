@@ -6,6 +6,8 @@ interface Props {
   external?: boolean;
   /** Botón full-width en móvil, auto en desktop — 02_diseno.md §6.2. */
   fullWidthMobile?: boolean;
+  /** Descarga el recurso en vez de navegar (ej. CV en PDF) — 02_diseno.md §10. */
+  download?: boolean;
   class?: string;
 }
 
@@ -15,6 +17,7 @@ const {
   type = "button",
   external = false,
   fullWidthMobile = false,
+  download = false,
   class: className = "",
 } = Astro.props;
 
@@ -33,7 +36,12 @@ const classes = `${base} ${height} ${width} ${variants[variant]} ${className}`;
 
 {
   href ? (
-    <a href={href} rel={external ? "noopener noreferrer" : undefined} class={classes}>
+    <a
+      href={href}
+      rel={external ? "noopener noreferrer" : undefined}
+      download={download ? true : undefined}
+      class={classes}
+    >
       <slot />
       {external && (
         <svg

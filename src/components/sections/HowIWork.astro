@@ -1,0 +1,32 @@
+---
+// Sección 5 "sobre-mi" ("04 Cómo trabajo") — 02_diseno.md §3.1.
+import SectionHeading from "../ui/SectionHeading.astro";
+import { site } from "../../data/site";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations();
+---
+
+<section
+  id="sobre-mi"
+  aria-labelledby="sobre-mi-heading"
+  class="scroll-mt-[72px] border-t border-border py-16 md:py-24"
+>
+  <div class="container-page">
+    <SectionHeading
+      number={t.home.howIWork.number}
+      title={t.home.howIWork.heading}
+      id="sobre-mi-heading"
+    />
+    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+      {
+        site.howIWork.map((item) => (
+          <div class="rounded-[var(--radius)] border border-border bg-surface p-6">
+            <h3 class="text-h3 text-text">{item.title}</h3>
+            <p class="mt-2 text-body text-text-muted">{item.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
