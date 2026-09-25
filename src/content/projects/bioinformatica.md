@@ -4,7 +4,7 @@ year: "2025"
 kind: "Práctica"
 role: "Backend"
 summary: "Ejecutar e inspeccionar algoritmos de bioinformática desde la web, con visualización paso a paso, en equipo de 4."
-stack: ["Python", "NumPy", "SciPy", "NetworkX", "Node.js", "React", "PostgreSQL", "Joi"]
+stack: ["Node.js", "Python", "React", "Joi", "NumPy", "SciPy", "NetworkX", "PostgreSQL"]
 status: "Finalizado"
 links:
   repo: "https://github.com/HallamSaaveda/NovaUBB-2025"
