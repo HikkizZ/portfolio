@@ -1,11 +1,14 @@
 ---
 import { getCollection, render } from "astro:content";
 import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import { assertNoTodos } from "../../lib/assert-no-todos";
 
 export async function getStaticPaths() {
   const projects = (await getCollection("projects", ({ data }) => !data.draft)).sort(
     (a, b) => a.data.order - b.data.order,
   );
+
+  assertNoTodos(projects);
 
   return projects.map((project, index) => ({
     params: { slug: project.id },
