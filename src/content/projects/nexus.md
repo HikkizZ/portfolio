@@ -30,7 +30,7 @@ Quería un servidor propio donde alojar mis proyectos personales (empezando por 
 
 ### Cloudflare Tunnel en vez de exponer puertos
 
-**Decisión:** Publicar los sitios con un túnel saliente de Cloudflare (Cloudflare Tunnel) en vez de abrir los puertos 80/443, con Docker configurado para no publicar puertos que salten el firewall.
+**Decisión:** Publicar los sitios con un túnel saliente de Cloudflare en vez de abrir los puertos 80/443, con Docker configurado para no publicar puertos que salten el firewall.
 
 **Por qué:** Con Cloudflare solo como proxy DNS, el servidor respondía por la IP directa, y Docker puede abrir puertos sin que ufw se entere. El túnel saliente elimina el puerto web.
 
@@ -57,8 +57,6 @@ Quería un servidor propio donde alojar mis proyectos personales (empezando por 
 **Decisión:** Combinar medidas independientes: ufw en el único puerto abierto (SSH), fail2ban con bloqueos crecientes, parches automáticos, y SPF/DKIM/DMARC estrictos en un dominio que no envía correo.
 
 **Por qué:** Ninguna medida sola cubre todo; ufw no detiene fuerza bruta por SSH, fail2ban no reemplaza los parches, y sin SPF/DMARC estricto el dominio es un vector de suplantación.
-
-**Alternativa descartada:** TODO — no tengo registrado si se evaluó alguna herramienta adicional (ej. un IDS tipo CrowdSec) antes de quedarme con ufw + fail2ban. Preguntar a Felipe.
 
 ## Arquitectura
 

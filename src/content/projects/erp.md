@@ -38,15 +38,13 @@ El ramo de Gestión de Proyectos de Software (GPS 2025, marzo–agosto) pedía c
 
 **Por qué:** Separar HTTP, lógica de negocio y acceso a datos permite probar y cambiar cada capa por separado, sin lógica de negocio mezclada en los controladores.
 
-**Alternativa descartada:** TODO — no encontré en el repo una alternativa de arquitectura evaluada y descartada explícitamente. Preguntar a Felipe si se discutió alguna en el equipo.
+**Alternativa descartada:** Otras formas de organizar el código se conversaron en el equipo, pero solo brevemente: no llegamos a evaluarlas en serio.
 
 ### RBAC de 11 roles con middleware encadenado
 
-**Decisión:** Modelar 11 roles de negocio (`SuperAdministrador`, `Administrador`, `RecursosHumanos`, `Gerencia`, `Ventas`, `Arriendo`, `Finanzas`, `Conductor`, `Mecánico`, entre otros) y controlarlos con un middleware de autenticación seguido de uno de autorización por rol.
+**Decisión:** Modelar 11 roles de negocio (Recursos Humanos, Gerencia, Ventas, Finanzas, Mecánico, entre otros) y controlarlos con un middleware de autenticación seguido de uno de autorización por rol.
 
-**Por qué:** Con 11 roles reales, repetir la validación en cada controlador habría sido inconsistente; centralizarla en middlewares la hace uniforme.
-
-**Alternativa descartada:** TODO — no verifiqué si se evaluó un modelo de permisos granulares en vez de rol fijo. Preguntar a Felipe.
+**Por qué:** Repetir la validación en cada controlador habría sido inconsistente; centralizarla en middlewares la hace uniforme. Los roles ya cubrían lo que necesitaba cada perfil, así que no hizo falta un modelo de permisos individuales.
 
 ### Autenticación JWT sin estado
 
@@ -54,15 +52,13 @@ El ramo de Gestión de Proyectos de Software (GPS 2025, marzo–agosto) pedía c
 
 **Por qué:** Un token sin estado no requiere almacenamiento de sesión y es el estándar para una API REST separada del frontend.
 
-**Alternativa descartada:** TODO — no confirmé si se consideró sesión con cookies antes de optar por JWT. Preguntar a Felipe.
-
 ### Suite de tests de integración sobre la API real
 
-**Decisión:** Cubrir autenticación, usuarios y módulos de negocio con 106 tests automatizados (Mocha, Chai, Supertest): la mayoría de integración, que levantan la API y golpean los endpoints reales, más tests unitarios de utilidades como la validación de RUT.
+**Decisión:** Cubrir autenticación, usuarios y módulos de negocio con 106 tests automatizados (Mocha, Chai, Supertest), en su mayoría de integración contra los endpoints reales.
 
 **Por qué:** En un sistema con control de acceso por rol, un test de integración prueba a la vez ruta, middleware de autorización y respuesta real.
 
-**Alternativa descartada:** TODO — no verifiqué si se planteó sumar tests unitarios de servicios y se dejó fuera por tiempo. Preguntar a Felipe.
+**Alternativa descartada:** Sumar tests unitarios de los servicios. Quedaron fuera por tiempo.
 
 ### Despliegue en producción con PM2
 
@@ -70,7 +66,7 @@ El ramo de Gestión de Proyectos de Software (GPS 2025, marzo–agosto) pedía c
 
 **Por qué:** PM2 mantiene el proceso Node vivo, lo reinicia si falla, y permite ver logs sin infraestructura más compleja.
 
-**Alternativa descartada:** TODO — no verifiqué si se evaluó Docker para este despliegue y se descartó por el plazo del ramo. Preguntar a Felipe.
+**Qué cambiaría hoy:** Usaría Docker desde el comienzo del proyecto.
 
 ## Arquitectura
 

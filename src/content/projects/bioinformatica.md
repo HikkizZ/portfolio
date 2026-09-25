@@ -36,15 +36,15 @@ La práctica profesional pedía una plataforma web donde se pudiera ejecutar e i
 
 **Por qué:** Así el cómputo científico se queda en el lenguaje que ya lo tenía implementado y probado, sin forzar una reescritura de los algoritmos.
 
-**Alternativa descartada:** TODO — no está respaldado si se evaluó exponer los scripts de Python como un servicio HTTP propio (Flask/FastAPI) en vez de `child_process`. Preguntar a Felipe.
+**Alternativa descartada:** Exponer Python como un servicio HTTP propio (Flask o FastAPI). Lo consideramos en algún momento, y elegimos `child_process` sobre todo para mantener el backend en un solo stack.
 
 ### Reutilizar el prototipo de escritorio como origen de los algoritmos
 
-**Decisión:** Partir de los algoritmos ya escritos en un prototipo de escritorio en Python (proyecto personal previo) en vez de programarlos de nuevo para la web.
+**Decisión:** Partir de los algoritmos ya escritos en un prototipo de escritorio en Python, hecho antes con otra integrante del equipo, en vez de programarlos de nuevo. La interfaz de escritorio se descartó al integrar todo en la web.
 
 **Por qué:** Los algoritmos más complejos (alineamiento con traceback, predicción de estructura con Montecarlo) ya estaban implementados y probados ahí.
 
-**Alternativa descartada:** TODO — no verifiqué si se consideró usar una librería de bioinformática existente (ej. Biopython) en vez de la implementación propia. Preguntar a Felipe.
+**Alternativa descartada:** Usar una librería existente como Biopython. La consideramos, pero decidimos implementar nosotros mismos cada algoritmo.
 
 ## Arquitectura
 

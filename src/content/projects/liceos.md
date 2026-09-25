@@ -36,7 +36,7 @@ El ramo de Ingeniería de Software (ISW 2024, agosto–diciembre) pedía un sist
 
 **Por qué:** Sin esa validación en el backend, nada impedía crear dos clases en la misma sala al mismo tiempo.
 
-**Alternativa descartada:** TODO — no verifiqué si se evaluó un algoritmo de asignación automática de horarios en vez de validar el conflicto en la creación manual. Preguntar a Felipe.
+**Alternativa descartada:** Generar los horarios automáticamente. Lo consideramos, pero era nuestro primer proyecto y validar los choques en la creación manual era más abordable.
 
 ### Reservas de salas con flujo de aprobación por estados
 
@@ -44,15 +44,13 @@ El ramo de Ingeniería de Software (ISW 2024, agosto–diciembre) pedía un sist
 
 **Por qué:** Una sala es un recurso compartido y limitado; el flujo de aprobación deja registro de quién pidió y quién autorizó, sin que cualquiera la bloquee.
 
-**Alternativa descartada:** TODO — no verifiqué si se consideró aprobación automática ("primero en pedir, primero en obtener") para casos simples. Preguntar a Felipe.
-
 ### Validación de RUT chileno en el backend
 
 **Decisión:** Validar el formato del RUT con una expresión regular en el backend (Joi), no solo en el frontend, y usarlo como identificador en usuarios, horarios y asignaturas.
 
 **Por qué:** El RUT es el identificador natural de personas en Chile; validarlo en el backend evita datos mal formados que lleguen por fuera del formulario web.
 
-**Alternativa descartada:** TODO — no verifiqué si se evaluó validar también el dígito verificador del RUT y se dejó fuera por alcance del ramo. Preguntar a Felipe.
+**Qué cambiaría hoy:** Validaría también el dígito verificador con el algoritmo de módulo 11, no solo el formato.
 
 ## Arquitectura
 
