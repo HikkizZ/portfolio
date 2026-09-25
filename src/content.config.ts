@@ -1,5 +1,6 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
+import { z } from "astro/zod";
 
 // Esquema unificado con 01_arquitectura.md → "Esquema de un proyecto (Zod)".
 // El slug sale del nombre del archivo (erp.md → /proyectos/erp).
@@ -15,9 +16,9 @@ const projects = defineCollection({
       stack: z.array(z.string()),
       status: z.enum(["En producción", "Finalizado", "Activo"]),
       links: z.object({
-        repo: z.string().url().optional(),
-        demo: z.string().url().optional(),
-        docs: z.string().url().optional(),
+        repo: z.url().optional(),
+        demo: z.url().optional(),
+        docs: z.url().optional(),
       }),
       metrics: z
         .array(
