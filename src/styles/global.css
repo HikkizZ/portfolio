@@ -23,6 +23,10 @@
   --accent-hover: #115e59;
   --on-accent: #ffffff;
   --focus: #0f766e;
+
+  /* Anchos — 02_diseno.md §5.5 */
+  --max-w: 1120px;
+  --max-prose: 68ch;
 }
 
 :root[data-theme="dark"] {
@@ -89,9 +93,22 @@
   }
 
   body {
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-sans);
+  }
+
+  main {
+    flex: 1;
+  }
+
+  /* Evita que transition-colors (que incluye outline-color) anime la
+     aparición del anillo de foco desde currentColor hasta --focus. */
+  * {
+    outline-color: var(--focus);
   }
 
   :focus-visible {
@@ -119,7 +136,7 @@
 @layer utilities {
   /* Contenedor general — 02_diseno.md §5.4/§5.5 */
   .container-page {
-    max-width: var(--max-w, 1120px);
+    max-width: var(--max-w);
     margin-inline: auto;
     padding-inline: 16px;
   }
@@ -137,7 +154,7 @@
   }
 
   .prose-width {
-    max-width: 68ch;
+    max-width: var(--max-prose);
   }
 
   /* Fondo del header sticky — 02_diseno.md §6.1 (color-mix + blur exactos) */
@@ -193,10 +210,12 @@
     }
   }
 
+  /* text-body y text-small fijan tamaño/line-height, no peso: el peso lo
+     pone el componente con font-medium/font-semibold de Tailwind (si no,
+     hereda el 400 del body). Ver 02_diseno.md §5.2, ajuste de spec #3. */
   .text-body {
     font-size: 1rem; /* 16px */
     line-height: 1.6;
-    font-weight: 400;
   }
   @media (min-width: 768px) {
     .text-body {
@@ -207,7 +226,6 @@
   .text-small {
     font-size: 0.875rem; /* 14px */
     line-height: 1.5;
-    font-weight: 400;
   }
 
   .text-mono {
