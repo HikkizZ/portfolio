@@ -162,95 +162,101 @@
     background-color: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(8px);
   }
+}
 
-  /* Escala tipográfica — 02_diseno.md §5.2 (móvil por defecto, ≥768px en media query) */
-  .text-display {
-    font-size: 2rem; /* 32px */
-    line-height: 1.1;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
+/*
+ * Escala tipográfica — 02_diseno.md §5.2 (móvil por defecto, ≥768px en
+ * media query interna). Registradas con `@utility` (no como clases sueltas
+ * en @layer utilities) para que entren al sistema de utilidades de Tailwind:
+ * así las variantes (`sm:`, `md:`, `font-medium`, `font-semibold`, ...)
+ * quedan correctamente ordenadas por encima y sí pueden pisarlas. Con
+ * clases manuales en @layer utilities perdían siempre ese pulso, sin
+ * importar el breakpoint (bloqueante de la revisión de diseño #1).
+ *
+ * text-body, text-small y text-mono fijan tamaño/line-height (y en mono,
+ * familia/uppercase/letter-spacing), no peso: el peso lo pone el
+ * componente con font-medium/font-semibold (ajuste de spec §5.2/#3).
+ * Excepción: text-mono sí fija su propio peso (500, §5.2), porque ningún
+ * componente necesita pisarlo — SectionHeading, ProjectCard, TechSheet y
+ * DecisionBlock lo usan siempre tal cual; fijarlo aquí evita repetirlo en
+ * cada uno. display/h1/h2/h3/metric sí llevan su peso de la tabla §5.2.
+ */
+@utility text-display {
+  font-size: 2rem; /* 32px */
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
   @media (min-width: 768px) {
-    .text-display {
-      font-size: 3rem; /* 48px */
-    }
+    font-size: 3rem; /* 48px */
   }
+}
 
-  .text-h1 {
-    font-size: 1.875rem; /* 30px */
-    line-height: 1.15;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
+@utility text-h1 {
+  font-size: 1.875rem; /* 30px */
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+
   @media (min-width: 768px) {
-    .text-h1 {
-      font-size: 2.5rem; /* 40px */
-    }
+    font-size: 2.5rem; /* 40px */
   }
+}
 
-  .text-h2 {
-    font-size: 1.5rem; /* 24px */
-    line-height: 1.25;
-    font-weight: 600;
-  }
+@utility text-h2 {
+  font-size: 1.5rem; /* 24px */
+  line-height: 1.25;
+  font-weight: 600;
+
   @media (min-width: 768px) {
-    .text-h2 {
-      font-size: 1.75rem; /* 28px */
-    }
-  }
-
-  .text-h3 {
-    font-size: 1.125rem; /* 18px */
-    line-height: 1.35;
-    font-weight: 600;
-  }
-  @media (min-width: 768px) {
-    .text-h3 {
-      font-size: 1.25rem; /* 20px */
-    }
-  }
-
-  /* text-body y text-small fijan tamaño/line-height, no peso: el peso lo
-     pone el componente con font-medium/font-semibold de Tailwind (si no,
-     hereda el 400 del body). Ver 02_diseno.md §5.2, ajuste de spec #3. */
-  .text-body {
-    font-size: 1rem; /* 16px */
-    line-height: 1.6;
-  }
-  @media (min-width: 768px) {
-    .text-body {
-      font-size: 1.0625rem; /* 17px */
-    }
-  }
-
-  .text-small {
-    font-size: 0.875rem; /* 14px */
-    line-height: 1.5;
-  }
-
-  .text-mono {
-    font-family: var(--font-mono);
-    font-size: 0.75rem; /* 12px */
-    line-height: 1.4;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  @media (min-width: 768px) {
-    .text-mono {
-      font-size: 0.8125rem; /* 13px */
-    }
-  }
-
-  .text-metric {
     font-size: 1.75rem; /* 28px */
-    line-height: 1;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
   }
+}
+
+@utility text-h3 {
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.35;
+  font-weight: 600;
+
   @media (min-width: 768px) {
-    .text-metric {
-      font-size: 2rem; /* 32px */
-    }
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+@utility text-body {
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+
+  @media (min-width: 768px) {
+    font-size: 1.0625rem; /* 17px */
+  }
+}
+
+@utility text-small {
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.5;
+}
+
+@utility text-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  @media (min-width: 768px) {
+    font-size: 0.8125rem; /* 13px */
+  }
+}
+
+@utility text-metric {
+  font-size: 1.75rem; /* 28px */
+  line-height: 1;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  @media (min-width: 768px) {
+    font-size: 2rem; /* 32px */
   }
 }
