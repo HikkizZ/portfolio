@@ -36,6 +36,13 @@ const canonicalURL = new URL(canonicalPath, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
+    <!--
+      TODO: agregar <meta property="og:image" content="/og.png"> y
+      <meta name="twitter:card" content="summary_large_image"> cuando exista
+      public/og.png (02_diseno.md §8.2). Sin imagen, no declarar og:image ni
+      usar un placeholder.
+    -->
+
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />

@@ -1,0 +1,26 @@
+---
+// 02_diseno.md §3.3. El footer queda al pie gracias al body flex de §12.10
+// (BaseLayout / global.css: body flex-col + main { flex: 1 }).
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/ui/Button.astro";
+import Link from "../components/ui/Link.astro";
+import { useTranslations } from "../i18n";
+
+const t = useTranslations();
+---
+
+<BaseLayout
+  title={`${t.notFound.title} — Felipe Miranda`}
+  description={t.notFound.message}
+  noindex
+>
+  <div class="container-page flex min-h-[50vh] flex-col items-center justify-center gap-4 py-24 text-center">
+    <p class="font-mono text-5xl leading-none text-text-muted">{t.notFound.code}</p>
+    <h1 class="text-h1 text-text">{t.notFound.title}</h1>
+    <p class="prose-width text-body text-text-muted">{t.notFound.message}</p>
+    <div class="mt-4 flex flex-col items-center gap-4 sm:flex-row">
+      <Button variant="primary" href="/">{t.notFound.cta}</Button>
+      <Link href="/#proyectos">{t.notFound.secondary}</Link>
+    </div>
+  </div>
+</BaseLayout>
