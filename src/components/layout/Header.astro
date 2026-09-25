@@ -1,0 +1,40 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+import { useTranslations } from "../../i18n";
+
+const t = useTranslations();
+---
+
+<header class="header-surface sticky top-0 z-50 border-b border-border">
+  <div class="container-page flex h-14 items-center justify-between">
+    <a
+      href="/"
+      class="font-sans text-body font-semibold text-text transition-colors duration-150 ease-out hover:text-accent"
+    >
+      <span class="hidden sm:inline">{t.nav.logoFull}</span>
+      <span class="sm:hidden">{t.nav.logoShort}</span>
+    </a>
+
+    <nav aria-label={t.nav.ariaLabel} class="flex items-center gap-1 sm:gap-2">
+      <a
+        href="/#proyectos"
+        class="inline-flex min-h-11 items-center px-2 text-small font-medium text-text-muted transition-colors duration-150 ease-out hover:text-text sm:text-[15px]"
+      >
+        {t.nav.proyectos}
+      </a>
+      <a
+        href="/#experiencia"
+        class="inline-flex min-h-11 items-center px-2 text-small font-medium text-text-muted transition-colors duration-150 ease-out hover:text-text sm:text-[15px]"
+      >
+        {t.nav.experiencia}
+      </a>
+      <a
+        href="/#contacto"
+        class="inline-flex min-h-11 items-center px-2 text-small font-medium text-text-muted transition-colors duration-150 ease-out hover:text-text sm:text-[15px]"
+      >
+        {t.nav.contacto}
+      </a>
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,43 @@
+{
+  "skipLink": "Saltar al contenido",
+  "nav": {
+    "ariaLabel": "Principal",
+    "logoFull": "Felipe Miranda",
+    "logoShort": "FM",
+    "proyectos": "Proyectos",
+    "experiencia": "Experiencia",
+    "contacto": "Contacto"
+  },
+  "theme": {
+    "toggleAriaLabelToDark": "Cambiar a modo oscuro",
+    "toggleAriaLabelToLight": "Cambiar a modo claro"
+  },
+  "project": {
+    "caseStudyLink": "Ver caso de estudio",
+    "caseStudyArrow": "→"
+  },
+  "techSheet": {
+    "stack": "Stack",
+    "status": "Estado",
+    "metrics": "Métricas",
+    "links": "Links"
+  },
+  "decision": {
+    "decision": "Decisión",
+    "why": "Por qué",
+    "discarded": "Alternativa descartada"
+  },
+  "footer": {
+    "ariaLabel": "Enlaces del pie de página",
+    "copyright": "© {year} Felipe Miranda Rebolledo · Hecho con Astro y servido desde Nexus (zytech.dev)",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Correo",
+    "sourceCode": "Código de este sitio"
+  },
+  "kit": {
+    "title": "Kit de componentes",
+    "description": "Página de muestra del sistema de diseño. No forma parte del contenido público del portafolio.",
+    "exampleTag": "Ejemplo: los datos mostrados abajo son ficticios, solo para revisar los componentes."
+  }
+}

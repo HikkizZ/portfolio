@@ -1,17 +1,10 @@
 ---
-import '../styles/global.css';
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Portafolio</title>
-	</head>
-	<body>
-		<h1>Portafolio — en construcción</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Felipe Miranda Rebolledo"
+  description="Ingeniero Civil en Informática, Full Stack con énfasis en backend."
+>
+  <p class="container-page py-16 text-body text-text">Portafolio — en construcción.</p>
+</BaseLayout>
