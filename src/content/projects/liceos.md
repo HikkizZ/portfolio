@@ -32,25 +32,25 @@ El ramo de Ingeniería de Software (ISW 2024, agosto–diciembre) pedía un sist
 
 ### Detección de conflictos al crear un horario
 
-**Decisión:** antes de guardar un horario, el servicio consulta si ya existe uno para la misma sala, día y bloque, y si existe, rechaza la creación con un mensaje explicando el choque.
+**Decisión:** Antes de guardar un horario, el servicio consulta si ya existe uno para la misma sala, día y bloque, y si existe, rechaza la creación con un mensaje explicando el choque.
 
-**Por qué:** sin esa validación en el backend, nada impedía crear dos clases en la misma sala al mismo tiempo.
+**Por qué:** Sin esa validación en el backend, nada impedía crear dos clases en la misma sala al mismo tiempo.
 
 **Alternativa descartada:** TODO — no verifiqué si se evaluó un algoritmo de asignación automática de horarios en vez de validar el conflicto en la creación manual. Preguntar a Felipe.
 
 ### Reservas de salas con flujo de aprobación por estados
 
-**Decisión:** las reservas de sala se crean en estado `pendiente` y pasan a `aprobada` o `rechazada` por una acción explícita de quien tiene el rol para autorizarlas.
+**Decisión:** Las reservas de sala se crean en estado `pendiente` y pasan a `aprobada` o `rechazada` por una acción explícita de quien tiene el rol para autorizarlas.
 
-**Por qué:** una sala es un recurso compartido y limitado; el flujo de aprobación deja registro de quién pidió y quién autorizó, sin que cualquiera la bloquee.
+**Por qué:** Una sala es un recurso compartido y limitado; el flujo de aprobación deja registro de quién pidió y quién autorizó, sin que cualquiera la bloquee.
 
 **Alternativa descartada:** TODO — no verifiqué si se consideró aprobación automática ("primero en pedir, primero en obtener") para casos simples. Preguntar a Felipe.
 
 ### Validación de RUT chileno en el backend
 
-**Decisión:** validar el formato del RUT con una expresión regular en el backend (Joi), no solo en el frontend, y usarlo como identificador en usuarios, horarios y asignaturas.
+**Decisión:** Validar el formato del RUT con una expresión regular en el backend (Joi), no solo en el frontend, y usarlo como identificador en usuarios, horarios y asignaturas.
 
-**Por qué:** el RUT es el identificador natural de personas en Chile; validarlo en el backend evita datos mal formados que lleguen por fuera del formulario web.
+**Por qué:** El RUT es el identificador natural de personas en Chile; validarlo en el backend evita datos mal formados que lleguen por fuera del formulario web.
 
 **Alternativa descartada:** TODO — no verifiqué si se evaluó validar también el dígito verificador del RUT y se dejó fuera por alcance del ramo. Preguntar a Felipe.
 

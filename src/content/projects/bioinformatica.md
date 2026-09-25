@@ -34,15 +34,15 @@ La práctica profesional pedía una plataforma web donde se pudiera ejecutar e i
 
 **Decisión:** Node.js con Joi recibe la petición HTTP, valida la entrada (incluida ADN/ARN) y responde; el cómputo corre en un proceso Python aparte, invocado con `child_process`, con JSON como contrato.
 
-**Por qué:** así el cómputo científico se queda en el lenguaje que ya lo tenía implementado y probado, sin forzar una reescritura de los algoritmos.
+**Por qué:** Así el cómputo científico se queda en el lenguaje que ya lo tenía implementado y probado, sin forzar una reescritura de los algoritmos.
 
 **Alternativa descartada:** TODO — no está respaldado si se evaluó exponer los scripts de Python como un servicio HTTP propio (Flask/FastAPI) en vez de `child_process`. Preguntar a Felipe.
 
 ### Reutilizar el prototipo de escritorio como origen de los algoritmos
 
-**Decisión:** partir de los algoritmos ya escritos en un prototipo de escritorio en Python (proyecto personal previo) en vez de programarlos de nuevo para la web.
+**Decisión:** Partir de los algoritmos ya escritos en un prototipo de escritorio en Python (proyecto personal previo) en vez de programarlos de nuevo para la web.
 
-**Por qué:** los algoritmos más complejos (alineamiento con traceback, predicción de estructura con Montecarlo) ya estaban implementados y probados ahí.
+**Por qué:** Los algoritmos más complejos (alineamiento con traceback, predicción de estructura con Montecarlo) ya estaban implementados y probados ahí.
 
 **Alternativa descartada:** TODO — no verifiqué si se consideró usar una librería de bioinformática existente (ej. Biopython) en vez de la implementación propia. Preguntar a Felipe.
 

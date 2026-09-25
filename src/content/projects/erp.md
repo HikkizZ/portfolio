@@ -34,39 +34,39 @@ El ramo de Gestión de Proyectos de Software (GPS 2025, marzo–agosto) pedía c
 
 ### Arquitectura en capas con TypeORM como base central
 
-**Decisión:** organizar el backend en capas (rutas → middlewares → controladores → servicios → entidades TypeORM) sobre PostgreSQL.
+**Decisión:** Organizar el backend en capas (rutas → middlewares → controladores → servicios → entidades TypeORM) sobre PostgreSQL.
 
-**Por qué:** separar HTTP, lógica de negocio y acceso a datos permite probar y cambiar cada capa por separado, sin lógica de negocio mezclada en los controladores.
+**Por qué:** Separar HTTP, lógica de negocio y acceso a datos permite probar y cambiar cada capa por separado, sin lógica de negocio mezclada en los controladores.
 
 **Alternativa descartada:** TODO — no encontré en el repo una alternativa de arquitectura evaluada y descartada explícitamente. Preguntar a Felipe si se discutió alguna en el equipo.
 
 ### RBAC de 11 roles con middleware encadenado
 
-**Decisión:** modelar 11 roles de negocio (`SuperAdministrador`, `Administrador`, `RecursosHumanos`, `Gerencia`, `Ventas`, `Arriendo`, `Finanzas`, `Conductor`, `Mecánico`, entre otros) y controlarlos con un middleware de autenticación seguido de uno de autorización por rol.
+**Decisión:** Modelar 11 roles de negocio (`SuperAdministrador`, `Administrador`, `RecursosHumanos`, `Gerencia`, `Ventas`, `Arriendo`, `Finanzas`, `Conductor`, `Mecánico`, entre otros) y controlarlos con un middleware de autenticación seguido de uno de autorización por rol.
 
-**Por qué:** con 11 roles reales, repetir la validación en cada controlador habría sido inconsistente; centralizarla en middlewares la hace uniforme.
+**Por qué:** Con 11 roles reales, repetir la validación en cada controlador habría sido inconsistente; centralizarla en middlewares la hace uniforme.
 
 **Alternativa descartada:** TODO — no verifiqué si se evaluó un modelo de permisos granulares en vez de rol fijo. Preguntar a Felipe.
 
 ### Autenticación JWT sin estado
 
-**Decisión:** autenticar con JSON Web Tokens firmados por el backend, sin sesiones guardadas en el servidor.
+**Decisión:** Autenticar con JSON Web Tokens firmados por el backend, sin sesiones guardadas en el servidor.
 
-**Por qué:** un token sin estado no requiere almacenamiento de sesión y es el estándar para una API REST separada del frontend.
+**Por qué:** Un token sin estado no requiere almacenamiento de sesión y es el estándar para una API REST separada del frontend.
 
 **Alternativa descartada:** TODO — no confirmé si se consideró sesión con cookies antes de optar por JWT. Preguntar a Felipe.
 
 ### Suite de tests de integración sobre la API real
 
-**Decisión:** cubrir autenticación, usuarios y módulos de negocio con 106 tests automatizados (Mocha, Chai, Supertest): la mayoría de integración, que levantan la API y golpean los endpoints reales, más tests unitarios de utilidades como la validación de RUT.
+**Decisión:** Cubrir autenticación, usuarios y módulos de negocio con 106 tests automatizados (Mocha, Chai, Supertest): la mayoría de integración, que levantan la API y golpean los endpoints reales, más tests unitarios de utilidades como la validación de RUT.
 
-**Por qué:** en un sistema con control de acceso por rol, un test de integración prueba a la vez ruta, middleware de autorización y respuesta real.
+**Por qué:** En un sistema con control de acceso por rol, un test de integración prueba a la vez ruta, middleware de autorización y respuesta real.
 
 **Alternativa descartada:** TODO — no verifiqué si se planteó sumar tests unitarios de servicios y se dejó fuera por tiempo. Preguntar a Felipe.
 
 ### Despliegue en producción con PM2
 
-**Decisión:** desplegar el backend gestionado por PM2, con variables de entorno separadas por ambiente y HTTPS.
+**Decisión:** Desplegar el backend gestionado por PM2, con variables de entorno separadas por ambiente y HTTPS.
 
 **Por qué:** PM2 mantiene el proceso Node vivo, lo reinicia si falla, y permite ver logs sin infraestructura más compleja.
 

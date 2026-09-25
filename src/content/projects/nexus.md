@@ -30,33 +30,33 @@ Quería un servidor propio donde alojar mis proyectos personales (empezando por 
 
 ### Cloudflare Tunnel en vez de exponer puertos
 
-**Decisión:** publicar los sitios con un túnel saliente de Cloudflare (Cloudflare Tunnel) en vez de abrir los puertos 80/443, con Docker configurado para no publicar puertos que salten el firewall.
+**Decisión:** Publicar los sitios con un túnel saliente de Cloudflare (Cloudflare Tunnel) en vez de abrir los puertos 80/443, con Docker configurado para no publicar puertos que salten el firewall.
 
-**Por qué:** con Cloudflare solo como proxy DNS, el servidor respondía por la IP directa, y Docker puede abrir puertos sin que ufw se entere. El túnel saliente elimina el puerto web.
+**Por qué:** Con Cloudflare solo como proxy DNS, el servidor respondía por la IP directa, y Docker puede abrir puertos sin que ufw se entere. El túnel saliente elimina el puerto web.
 
-**Alternativa descartada:** allowlist de IPs de Cloudflare o Authenticated Origin Pulls — ambas dependen de un puerto abierto y de mantener listas al día.
+**Alternativa descartada:** Allowlist de IPs de Cloudflare o Authenticated Origin Pulls — ambas dependen de un puerto abierto y de mantener listas al día.
 
 ### nginx en Docker como reverse proxy único
 
-**Decisión:** un contenedor de nginx hace de reverse proxy hacia el resto de servicios, resolviendo los contenedores destino en tiempo de ejecución.
+**Decisión:** Un contenedor de nginx hace de reverse proxy hacia el resto de servicios, resolviendo los contenedores destino en tiempo de ejecución.
 
-**Por qué:** así un servicio caído no tumba a los demás, y agregar un sitio nuevo es agregar configuración, no reconfigurar red.
+**Por qué:** Así un servicio caído no tumba a los demás, y agregar un sitio nuevo es agregar configuración, no reconfigurar red.
 
 **Alternativa descartada:** nginx instalado directamente en el sistema, que fue como partí. Lo migré a un contenedor cuando había un solo sitio, porque mover varios servicios después habría sido más caro.
 
 ### Infraestructura como código con push solo desde el PC
 
-**Decisión:** la configuración vive en git; el servidor solo hace `pull` (llave de despliegue de solo lectura) y el `push` solo es posible por SSH desde mi PC con reenvío de agente.
+**Decisión:** La configuración vive en git; el servidor solo hace `pull` (llave de despliegue de solo lectura) y el `push` solo es posible por SSH desde mi PC con reenvío de agente.
 
-**Por qué:** así ninguna llave capaz de escribir en el repositorio vive en el servidor; si se compromete, no puede alterar la infraestructura versionada.
+**Por qué:** Así ninguna llave capaz de escribir en el repositorio vive en el servidor; si se compromete, no puede alterar la infraestructura versionada.
 
-**Alternativa descartada:** guardar una llave de escritura o un token en el servidor para hacer `push` desde ahí — más cómodo, pero es un punto único de fuga.
+**Alternativa descartada:** Guardar una llave de escritura o un token en el servidor para hacer `push` desde ahí — más cómodo, pero es un punto único de fuga.
 
 ### Seguridad en capas incremental
 
-**Decisión:** combinar medidas independientes: ufw en el único puerto abierto (SSH), fail2ban con bloqueos crecientes, parches automáticos, y SPF/DKIM/DMARC estrictos en un dominio que no envía correo.
+**Decisión:** Combinar medidas independientes: ufw en el único puerto abierto (SSH), fail2ban con bloqueos crecientes, parches automáticos, y SPF/DKIM/DMARC estrictos en un dominio que no envía correo.
 
-**Por qué:** ninguna medida sola cubre todo; ufw no detiene fuerza bruta por SSH, fail2ban no reemplaza los parches, y sin SPF/DMARC estricto el dominio es un vector de suplantación.
+**Por qué:** Ninguna medida sola cubre todo; ufw no detiene fuerza bruta por SSH, fail2ban no reemplaza los parches, y sin SPF/DMARC estricto el dominio es un vector de suplantación.
 
 **Alternativa descartada:** TODO — no tengo registrado si se evaluó alguna herramienta adicional (ej. un IDS tipo CrowdSec) antes de quedarme con ufw + fail2ban. Preguntar a Felipe.
 
