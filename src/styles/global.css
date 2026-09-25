@@ -162,6 +162,92 @@
     background-color: color-mix(in srgb, var(--bg) 85%, transparent);
     backdrop-filter: blur(8px);
   }
+
+  /*
+   * Prosa del cuerpo Markdown de un caso de estudio — 02_diseno.md §3.2.
+   * Sin plugin de tipografía externo: estilos propios sobre los tokens.
+   * Los bloques "### Decisión" los convierte en <dl> el rehype propio
+   * (src/lib/rehype-decision-blocks.ts) con las mismas clases que
+   * DecisionBlock.astro, así que solo necesitan el espaciado entre bloques
+   * (regla `> div.border-l-2` de acá abajo), no tipografía propia.
+   */
+  .project-prose h2 {
+    margin-top: 48px;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 600;
+  }
+
+  .project-prose h2:first-child {
+    margin-top: 0;
+  }
+
+  .project-prose p {
+    margin-top: 16px;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .project-prose p:first-of-type {
+    margin-top: 0;
+  }
+
+  .project-prose ul {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-left: 20px;
+    list-style-type: disc;
+    color: var(--text);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .project-prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition:
+      color 150ms ease-out,
+      text-decoration-thickness 150ms ease-out;
+  }
+
+  .project-prose a:hover {
+    color: var(--accent-hover);
+    text-decoration-thickness: 2px;
+  }
+
+  .project-prose code {
+    border-radius: var(--radius-sm);
+    background-color: var(--surface-2);
+    padding: 2px 6px;
+    font-family: var(--font-mono);
+    font-size: 0.875em;
+  }
+
+  .project-prose > div.border-l-2 {
+    margin-top: 32px;
+  }
+
+  .project-prose > div.border-l-2:first-of-type {
+    margin-top: 48px;
+  }
+
+  @media (min-width: 768px) {
+    .project-prose h2 {
+      font-size: 1.75rem;
+    }
+
+    .project-prose p,
+    .project-prose ul {
+      font-size: 1.0625rem;
+    }
+  }
 }
 
 /*
