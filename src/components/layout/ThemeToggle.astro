@@ -65,9 +65,18 @@ const t = useTranslations();
 
   button?.addEventListener("click", () => {
     const next = currentTheme() === "dark" ? "light" : "dark";
+    // Revisión de diseño #2, hallazgo #9 / 02_diseno.md §13.6: sin esto,
+    // transition-colors (links, botones, badges) hace un fundido de 150ms
+    // al cambiar de tema. Se desactivan las transiciones un frame.
+    document.documentElement.classList.add("no-transitions");
     document.documentElement.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
     render(next);
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.documentElement.classList.remove("no-transitions");
+      });
+    });
   });
 
   render(currentTheme());
