@@ -25,7 +25,7 @@ const mobileBadges = withOverflow(stack, 3);
 
 <a
   href={href}
-  class="group flex h-full flex-col gap-3 rounded-[var(--radius)] border border-border bg-surface p-6 transition-colors duration-150 ease-out hover:border-border-strong hover:shadow-[var(--shadow-hover)] dark:hover:shadow-none"
+  class="group flex h-full flex-col gap-3 rounded-[var(--radius)] border border-border bg-surface p-6 transition-[border-color,box-shadow] [transition-duration:150ms,200ms] ease-out hover:border-border-strong hover:shadow-[var(--shadow-hover)] dark:hover:shadow-none"
 >
   <p class="text-mono text-text-muted">{year} · {kind}</p>
   <h3 class="text-h3 text-text transition-colors duration-150 ease-out group-hover:text-accent">
