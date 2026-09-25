@@ -13,8 +13,8 @@ metrics:
     label: "módulos"
   - value: "11"
     label: "roles RBAC"
-  - value: "36"
-    label: "tests de integración"
+  - value: "106"
+    label: "tests automatizados"
 order: 1
 draft: false
 ---
@@ -58,7 +58,7 @@ El ramo de Gestión de Proyectos de Software (GPS 2025, marzo–agosto) pedía c
 
 ### Suite de tests de integración sobre la API real
 
-**Decisión:** cubrir autenticación, usuarios y módulos de negocio con 36 tests de integración (Mocha, Chai, Supertest) que levantan la API y golpean los endpoints reales.
+**Decisión:** cubrir autenticación, usuarios y módulos de negocio con 106 tests automatizados (Mocha, Chai, Supertest): la mayoría de integración, que levantan la API y golpean los endpoints reales, más tests unitarios de utilidades como la validación de RUT.
 
 **Por qué:** en un sistema con control de acceso por rol, un test de integración prueba a la vez ruta, middleware de autorización y respuesta real.
 
@@ -78,4 +78,4 @@ El flujo de una request pasa por: ruta Express → middleware de autenticación 
 
 ## Resultados
 
-El sistema quedó desplegado en producción con los 7 módulos (inventario, maquinaria, mantenimiento, recursos humanos y los que dependen de ellos) funcionando sobre los 11 roles definidos, con 36 tests de integración cubriendo los flujos principales de autenticación y de negocio. Fue mi primer sistema con un modelo de permisos de ese tamaño llevado hasta el despliegue real, no solo hasta la demo del ramo.
+El sistema quedó desplegado en producción con los 7 módulos (inventario, maquinaria, mantenimiento, recursos humanos y los que dependen de ellos) funcionando sobre los 11 roles definidos, con 106 tests automatizados cubriendo los flujos principales de autenticación y de negocio. Fue mi primer sistema con un modelo de permisos de ese tamaño llevado hasta el despliegue real, no solo hasta la demo del ramo.
