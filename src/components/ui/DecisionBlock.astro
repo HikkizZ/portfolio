@@ -1,0 +1,31 @@
+---
+import { useTranslations } from "../../i18n";
+
+interface Props {
+  title: string;
+  decision: string;
+  why: string;
+  discarded: string;
+}
+
+const { title, decision, why, discarded } = Astro.props;
+const t = useTranslations();
+---
+
+<div class="border-l-2 border-border-strong pl-4">
+  <h3 class="text-h3 text-text">{title}</h3>
+  <dl class="mt-3 flex flex-col gap-3">
+    <div>
+      <dt class="text-mono text-text-muted">{t.decision.decision}</dt>
+      <dd class="mt-1 text-body text-text">{decision}</dd>
+    </div>
+    <div>
+      <dt class="text-mono text-text-muted">{t.decision.why}</dt>
+      <dd class="mt-1 text-body text-text">{why}</dd>
+    </div>
+    <div>
+      <dt class="text-mono text-text-muted">{t.decision.discarded}</dt>
+      <dd class="mt-1 text-body text-text">{discarded}</dd>
+    </div>
+  </dl>
+</div>

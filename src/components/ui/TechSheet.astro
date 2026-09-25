@@ -1,0 +1,74 @@
+---
+import Badge from "./Badge.astro";
+import Link from "./Link.astro";
+import { useTranslations } from "../../i18n";
+
+interface Metric {
+  value: string;
+  label: string;
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  stack: string[];
+  status: string;
+  metrics: Metric[];
+  links: LinkItem[];
+  labelledBy?: string;
+}
+
+const { stack, status, metrics, links, labelledBy } = Astro.props;
+const t = useTranslations();
+---
+
+<aside
+  aria-labelledby={labelledBy}
+  class="rounded-[var(--radius)] border border-border bg-surface p-6 lg:sticky lg:top-[72px]"
+>
+  <div class="flex flex-col gap-4">
+    <div>
+      <p class="text-mono text-text-muted">{t.techSheet.stack}</p>
+      <ul role="list" class="mt-2 flex flex-wrap gap-2">
+        {stack.map((tech) => (
+          <li>
+            <Badge>{tech}</Badge>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-mono text-text-muted">{t.techSheet.status}</p>
+      <p class="mt-2 text-body text-text">{status}</p>
+    </div>
+
+    <div>
+      <p class="text-mono text-text-muted">{t.techSheet.metrics}</p>
+      <ul role="list" class="mt-2 flex flex-col gap-2">
+        {metrics.map((metric) => (
+          <li class="flex items-baseline gap-2">
+            <span class="text-metric text-text">{metric.value}</span>
+            <span class="text-small text-text-muted">{metric.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <p class="text-mono text-text-muted">{t.techSheet.links}</p>
+      <ul role="list" class="mt-2 flex flex-col gap-2">
+        {links.map((link) => (
+          <li>
+            <Link href={link.href} external>
+              {link.label} ↗
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,57 @@
+---
+interface Props {
+  variant?: "primary" | "secondary";
+  href?: string;
+  type?: "button" | "submit";
+  external?: boolean;
+  /** Botón full-width en móvil, auto en desktop — 02_diseno.md §6.2. */
+  fullWidthMobile?: boolean;
+  class?: string;
+}
+
+const {
+  variant = "primary",
+  href,
+  type = "button",
+  external = false,
+  fullWidthMobile = false,
+  class: className = "",
+} = Astro.props;
+
+const base =
+  "inline-flex items-center justify-center gap-2 rounded-[var(--radius)] px-5 font-sans text-[15px] font-medium transition-colors duration-150 ease-out active:translate-y-px";
+const height = fullWidthMobile ? "h-12 sm:h-11" : "h-11";
+const width = fullWidthMobile ? "w-full sm:w-auto" : "";
+const variants = {
+  primary: "bg-accent text-on-accent hover:bg-accent-hover",
+  secondary:
+    "border border-border-strong bg-transparent text-text hover:border-text hover:bg-surface-2",
+};
+
+const classes = `${base} ${height} ${width} ${variants[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} rel={external ? "noopener noreferrer" : undefined} class={classes}>
+      <slot />
+      {external && (
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 16 16"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+        >
+          <path d="M6 10 10 6M6.5 6H10v3.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      )}
+    </a>
+  ) : (
+    <button type={type} class={classes}>
+      <slot />
+    </button>
+  )
+}

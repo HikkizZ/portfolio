@@ -1,0 +1,70 @@
+---
+import Badge from "./Badge.astro";
+import { useTranslations } from "../../i18n";
+
+interface Props {
+  href: string;
+  year: string;
+  kind: string;
+  title: string;
+  summary: string;
+  stack: string[];
+}
+
+const { href, year, kind, title, summary, stack } = Astro.props;
+const t = useTranslations();
+
+function withOverflow(items: string[], max: number) {
+  if (items.length <= max) return { visible: items, overflow: 0 };
+  return { visible: items.slice(0, max), overflow: items.length - max };
+}
+
+const desktopBadges = withOverflow(stack, 4);
+const mobileBadges = withOverflow(stack, 3);
+---
+
+<a
+  href={href}
+  class="group flex h-full flex-col gap-3 rounded-[var(--radius)] border border-border bg-surface p-6 transition-colors duration-150 ease-out hover:border-border-strong hover:shadow-[var(--shadow-hover)] dark:hover:shadow-none"
+>
+  <p class="text-mono text-text-muted">{year} · {kind}</p>
+  <h3 class="text-h3 text-text transition-colors duration-150 ease-out group-hover:text-accent">
+    {title}
+  </h3>
+  <p class="line-clamp-3 text-small text-text-muted sm:line-clamp-2">{summary}</p>
+
+  <ul role="list" class="hidden flex-wrap gap-2 sm:flex">
+    {desktopBadges.visible.map((tech) => (
+      <li>
+        <Badge>{tech}</Badge>
+      </li>
+    ))}
+    {desktopBadges.overflow > 0 && (
+      <li>
+        <Badge>+{desktopBadges.overflow}</Badge>
+      </li>
+    )}
+  </ul>
+  <ul role="list" class="flex flex-wrap gap-2 sm:hidden">
+    {mobileBadges.visible.map((tech) => (
+      <li>
+        <Badge>{tech}</Badge>
+      </li>
+    ))}
+    {mobileBadges.overflow > 0 && (
+      <li>
+        <Badge>+{mobileBadges.overflow}</Badge>
+      </li>
+    )}
+  </ul>
+
+  <span class="mt-auto inline-flex items-center gap-1 text-small font-medium text-accent">
+    {t.project.caseStudyLink}
+    <span
+      aria-hidden="true"
+      class="inline-block transition-transform duration-200 ease-[cubic-bezier(0.2,0,0,1)] group-hover:translate-x-1"
+    >
+      {t.project.caseStudyArrow}
+    </span>
+  </span>
+</a>
