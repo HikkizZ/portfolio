@@ -27,7 +27,7 @@ const t = useTranslations();
 
 <aside
   aria-labelledby={labelledBy}
-  class="rounded-[var(--radius)] border border-border bg-surface p-6 lg:sticky lg:top-[72px]"
+  class="rounded-[var(--radius)] border border-border bg-surface p-6"
 >
   <div class="flex flex-col gap-4">
     <div>
@@ -58,17 +58,21 @@ const t = useTranslations();
       </ul>
     </div>
 
-    <div>
-      <p class="text-mono text-text-muted">{t.techSheet.links}</p>
-      <ul role="list" class="mt-2 flex flex-col gap-2">
-        {links.map((link) => (
-          <li>
-            <Link href={link.href} external>
-              {link.label} <span aria-hidden="true">↗</span>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    {
+      links.length > 0 && (
+        <div>
+          <p class="text-mono text-text-muted">{t.techSheet.links}</p>
+          <ul role="list" class="mt-2 flex flex-col gap-2">
+            {links.map((link) => (
+              <li>
+                <Link href={link.href} external class="text-body">
+                  {link.label} <span aria-hidden="true">↗</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
   </div>
 </aside>

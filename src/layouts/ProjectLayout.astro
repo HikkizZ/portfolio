@@ -30,7 +30,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
   canonicalPath={`/proyectos/${project.id}/`}
 >
   <article>
-    <div class="container-page mt-10">
+    <div class="container-page mt-12">
       <p>
         <a
           href="/#proyectos"
@@ -44,8 +44,8 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
       <p class="prose-width mt-4 text-body text-text-muted">{data.summary}</p>
     </div>
 
-    <div class="container-page mt-10 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:gap-12">
-      <div class="lg:order-2">
+    <div class="container-page mt-12 lg:grid lg:grid-cols-[1fr_320px] lg:items-start lg:gap-12">
+      <div class="lg:order-2 lg:sticky lg:top-[72px]">
         <h2 id="ficha-tecnica-heading" class="sr-only">{t.techSheet.heading}</h2>
         <TechSheet
           labelledBy="ficha-tecnica-heading"
@@ -70,7 +70,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
           prev && (
             <a
               href={`/proyectos/${prev.id}/`}
-              class="inline-flex min-h-11 items-center text-text-muted transition-colors duration-150 ease-out hover:text-accent"
+              class="inline-flex min-h-11 items-center normal-case tracking-normal text-text-muted transition-colors duration-150 ease-out hover:text-accent"
             >
               {t.projectDetail.previousLabel} {prev.data.title}
             </a>
@@ -82,7 +82,7 @@ if (data.links.docs) techSheetLinks.push({ label: t.techSheet.docs, href: data.l
           next && (
             <a
               href={`/proyectos/${next.id}/`}
-              class="inline-flex min-h-11 items-center sm:justify-end text-text-muted transition-colors duration-150 ease-out hover:text-accent"
+              class="inline-flex min-h-11 items-center sm:justify-end normal-case tracking-normal text-text-muted transition-colors duration-150 ease-out hover:text-accent"
             >
               {t.projectDetail.nextLabel} {next.data.title} {t.projectDetail.nextArrow}
             </a>
