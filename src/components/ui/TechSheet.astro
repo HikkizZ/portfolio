@@ -64,7 +64,7 @@ const t = useTranslations();
         {links.map((link) => (
           <li>
             <Link href={link.href} external>
-              {link.label} ↗
+              {link.label} <span aria-hidden="true">↗</span>
             </Link>
           </li>
         ))}

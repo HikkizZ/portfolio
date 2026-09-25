@@ -15,7 +15,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title, description, canonicalPath = "/", noindex = false } = Astro.props;
+const { title, description, canonicalPath = Astro.url.pathname, noindex = false } = Astro.props;
 const t = useTranslations();
 const canonicalURL = new URL(canonicalPath, Astro.site);
 ---
