@@ -167,9 +167,9 @@
    * Prosa del cuerpo Markdown de un caso de estudio — 02_diseno.md §3.2.
    * Sin plugin de tipografía externo: estilos propios sobre los tokens.
    * Los bloques "### Decisión" los convierte en <dl> el rehype propio
-   * (src/lib/rehype-decision-blocks.ts) con las mismas clases que
-   * DecisionBlock.astro, así que solo necesitan el espaciado entre bloques
-   * (regla `> div.border-l-2` de acá abajo), no tipografía propia.
+   * (src/lib/rehype-decision-blocks.ts, única fuente de verdad de esas
+   * clases), así que solo necesitan el espaciado entre bloques (regla
+   * `> div.border-l-2` de acá abajo), no tipografía propia.
    */
   .project-prose h2 {
     margin-top: 48px;
@@ -263,9 +263,10 @@
  * familia/uppercase/letter-spacing), no peso: el peso lo pone el
  * componente con font-medium/font-semibold (ajuste de spec §5.2/#3).
  * Excepción: text-mono sí fija su propio peso (500, §5.2), porque ningún
- * componente necesita pisarlo — SectionHeading, ProjectCard, TechSheet y
- * DecisionBlock lo usan siempre tal cual; fijarlo aquí evita repetirlo en
- * cada uno. display/h1/h2/h3/metric sí llevan su peso de la tabla §5.2.
+ * uso necesita pisarlo — SectionHeading, ProjectCard, TechSheet y los
+ * bloques de decisión técnica (rehype-decision-blocks.ts) lo usan siempre
+ * tal cual; fijarlo aquí evita repetirlo en cada uno. display/h1/h2/h3/metric
+ * sí llevan su peso de la tabla §5.2.
  */
 @utility text-display {
   font-size: 2rem; /* 32px */

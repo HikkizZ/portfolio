@@ -6,10 +6,11 @@
  * opcionalmente `**Alternativa descartada:** …` y `**Qué cambiaría hoy:** …`
  * (02_diseno.md §3.2/§6.10, 04_plan_implementacion.md Fase 3). Este plugin
  * corre después de remark-rehype (sobre el árbol hast, ya HTML) y reescribe
- * ese patrón como el mismo `<dl>` que dibuja
- * src/components/ui/DecisionBlock.astro, con las mismas clases, para que el
- * cuerpo Markdown se vea igual sin necesitar MDX. Si cambian las clases de
- * DecisionBlock.astro, hay que actualizarlas también acá.
+ * ese patrón como un `<dl>` con las clases de 02_diseno.md §6.10, para que
+ * el cuerpo Markdown se vea como un bloque de decisión técnica sin
+ * necesitar MDX. Este archivo es la única fuente de verdad de esas clases
+ * (antes también vivían en src/components/ui/DecisionBlock.astro, borrado
+ * en la Fase 4 por no tener otro uso).
  *
  * Solo transforma un `h3` cuyo párrafo siguiente empiece exactamente con
  * `**Decisión:**` — cualquier otro `h3` (no debería haber otros en el

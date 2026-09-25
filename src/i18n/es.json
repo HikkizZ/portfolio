@@ -82,10 +82,5 @@
     "linkedin": "LinkedIn",
     "email": "Correo",
     "sourceCode": "Código de este sitio"
-  },
-  "kit": {
-    "title": "Kit de componentes",
-    "description": "Página de muestra del sistema de diseño. No forma parte del contenido público del portafolio.",
-    "exampleTag": "Ejemplo: los datos mostrados abajo son ficticios, solo para revisar los componentes."
   }
 }
