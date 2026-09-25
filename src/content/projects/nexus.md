@@ -10,8 +10,8 @@ links: {}
 metrics:
   - value: "0"
     label: "puertos web expuestos (solo SSH)"
-  - value: "3"
-    label: "capas de defensa (ufw, fail2ban, Cloudflare Tunnel)"
+  - value: "0"
+    label: "llaves con permiso de escritura guardadas en el servidor"
 order: 4
 draft: false
 ---
@@ -23,7 +23,6 @@ Quería un servidor propio donde alojar mis proyectos personales (empezando por 
 ## Contexto y restricciones
 
 - Proyecto personal, sin plazo fijo, mantenido y ampliado por mí solo.
-- El dominio del servidor no envía correo, así que cualquier decisión de red tenía que respetar eso (por ejemplo, en la configuración de correo).
 - Objetivo explícito: ningún puerto web expuesto directamente a internet, solo acceso SSH para administración.
 - Todo cambio de infraestructura (proxy, contenedores) tenía que quedar en un repositorio versionado, no aplicado a mano y sin registro.
 
@@ -43,7 +42,7 @@ Quería un servidor propio donde alojar mis proyectos personales (empezando por 
 
 **Por qué:** así un servicio caído no tumba a los demás, y agregar un sitio nuevo es agregar configuración, no reconfigurar red.
 
-**Alternativa descartada:** un proxy por servicio (cada contenedor con su propio nginx o Caddy expuesto) — duplica configuración de TLS y cabeceras de seguridad por cada app.
+**Alternativa descartada:** nginx instalado directamente en el sistema, que fue como partí. Lo migré a un contenedor cuando había un solo sitio, porque mover varios servicios después habría sido más caro.
 
 ### Infraestructura como código con push solo desde el PC
 

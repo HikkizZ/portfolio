@@ -11,8 +11,8 @@ links:
 metrics:
   - value: "4/6"
     label: "algoritmos implementados por mí"
-  - value: "2"
-    label: "capas de la arquitectura (Node.js → Python)"
+  - value: "6"
+    label: "algoritmos integrados en el hub"
 order: 2
 draft: false
 ---
@@ -36,7 +36,7 @@ La práctica profesional pedía una plataforma web donde se pudiera ejecutar e i
 
 **Por qué:** así el cómputo científico se queda en el lenguaje que ya lo tenía implementado y probado, sin forzar una reescritura de los algoritmos.
 
-**Alternativa descartada:** exponer los scripts de Python como su propio servicio HTTP (Flask/FastAPI) — evitaba el costo de un proceso por ejecución, pero sumaba otro servidor para un equipo pequeño.
+**Alternativa descartada:** TODO — no está respaldado si se evaluó exponer los scripts de Python como un servicio HTTP propio (Flask/FastAPI) en vez de `child_process`. Preguntar a Felipe.
 
 ### Reutilizar el prototipo de escritorio como origen de los algoritmos
 
