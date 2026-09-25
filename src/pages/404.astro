@@ -1,6 +1,8 @@
 ---
-// 02_diseno.md §3.3. El footer queda al pie gracias al body flex de §12.10
-// (BaseLayout / global.css: body flex-col + main { flex: 1 }).
+// 02_diseno.md §3.3/§13.7. El footer queda al pie gracias al body flex de
+// §12.10 (BaseLayout / global.css: body flex-col + main { flex: 1 }); el
+// bloque 404 usa flex-1 (no min-h-[50vh]) para quedar centrado en todo el
+// alto disponible de main, no solo en la mitad de la pantalla.
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/ui/Button.astro";
 import Link from "../components/ui/Link.astro";
@@ -14,13 +16,13 @@ const t = useTranslations();
   description={t.notFound.message}
   noindex
 >
-  <div class="container-page flex min-h-[50vh] flex-col items-center justify-center gap-4 py-24 text-center">
+  <div class="container-page flex flex-1 flex-col items-center justify-center gap-4 py-24 text-center">
     <p class="font-mono text-5xl leading-none text-text-muted">{t.notFound.code}</p>
     <h1 class="text-h1 text-text">{t.notFound.title}</h1>
     <p class="prose-width text-body text-text-muted">{t.notFound.message}</p>
     <div class="mt-4 flex flex-col items-center gap-4 sm:flex-row">
       <Button variant="primary" href="/">{t.notFound.cta}</Button>
-      <Link href="/#proyectos">{t.notFound.secondary}</Link>
+      <Link href="/#proyectos" class="inline-flex min-h-11 items-center">{t.notFound.secondary}</Link>
     </div>
   </div>
 </BaseLayout>
