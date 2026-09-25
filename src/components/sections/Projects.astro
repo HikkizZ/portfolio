@@ -24,7 +24,7 @@ const projects = (await getCollection("projects", ({ data }) => !data.draft)).so
     />
     <p class="prose-width mt-2 text-body text-text-muted">{t.home.projects.subtitle}</p>
 
-    <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
       {
         projects.map((project) => (
           <ProjectCard
