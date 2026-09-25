@@ -1,7 +1,8 @@
 ---
-// Sección 6 "contacto" — 02_diseno.md §3.1. Full-width móvil solo en
+// Sección 6 "contacto" — 02_diseno.md §3.1/§13.4. Full-width móvil solo en
 // "Escribir correo" (ajuste #9 de 05_revision_fable_1.md / §12.9 de 02_diseno.md);
-// LinkedIn/GitHub van en grid-cols-2.
+// LinkedIn/GitHub van en grid-cols-2 en móvil. Desde 640px las tres acciones
+// van en una sola fila (revisión #2, hallazgo #5 / §13.4).
 import Button from "../ui/Button.astro";
 import Link from "../ui/Link.astro";
 import SectionHeading from "../ui/SectionHeading.astro";
@@ -24,11 +25,11 @@ const t = useTranslations();
     />
     <p class="mt-2 text-body text-text-muted">{site.availability}</p>
 
-    <div class="mt-8 flex flex-col gap-3 sm:max-w-xs">
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
       <Button variant="primary" href={`mailto:${site.email}`} fullWidthMobile>
         {t.home.contact.writeEmail}
       </Button>
-      <div class="grid grid-cols-2 gap-3">
+      <div class="grid grid-cols-2 gap-3 sm:flex">
         <Button variant="secondary" href={site.linkedin} external>
           {t.footer.linkedin}
         </Button>
