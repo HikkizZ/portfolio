@@ -1,1 +1,238 @@
 @import "tailwindcss";
+
+/* Tipografías autoalojadas (IBM Plex), subset latin — ver 02_diseno.md §5.1 */
+@import "@fontsource/ibm-plex-sans/latin-400.css";
+@import "@fontsource/ibm-plex-sans/latin-500.css";
+@import "@fontsource/ibm-plex-sans/latin-600.css";
+@import "@fontsource/ibm-plex-mono/latin-400.css";
+@import "@fontsource/ibm-plex-mono/latin-500.css";
+
+/* Variante `dark:` de Tailwind → atributo data-theme (no prefers-color-scheme directo) */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Paleta — 02_diseno.md §5.3. Claro por defecto. */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --surface-2: #f5f5f4;
+  --border: #e7e5e4;
+  --border-strong: #d6d3d1;
+  --text: #1c1917;
+  --text-muted: #57534e;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --on-accent: #ffffff;
+  --focus: #0f766e;
+}
+
+:root[data-theme="dark"] {
+  --bg: #111110;
+  --surface: #1c1917;
+  --surface-2: #292524;
+  --border: #2e2a28;
+  --border-strong: #44403c;
+  --text: #e7e5e4;
+  --text-muted: #a8a29e;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --on-accent: #111110;
+  --focus: #2dd4bf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111110;
+    --surface: #1c1917;
+    --surface-2: #292524;
+    --border: #2e2a28;
+    --border-strong: #44403c;
+    --text: #e7e5e4;
+    --text-muted: #a8a29e;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --on-accent: #111110;
+    --focus: #2dd4bf;
+  }
+}
+
+/* Tokens estáticos (no cambian con el tema) — 02_diseno.md §5.1, §5.4, §5.5 */
+@theme {
+  --font-sans:
+    "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono:
+    "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  --radius-sm: 4px;
+  --radius: 8px;
+  --shadow-hover: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.06);
+}
+
+/* Colores → namespace de Tailwind. `inline` para que se re-evalúen en runtime
+   contra las variables de :root (necesario porque cambian con data-theme). */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-on-accent: var(--on-accent);
+  --color-focus: var(--focus);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: inherit;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Contenedor general — 02_diseno.md §5.4/§5.5 */
+  .container-page {
+    max-width: var(--max-w, 1120px);
+    margin-inline: auto;
+    padding-inline: 16px;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-page {
+      padding-inline: 32px;
+    }
+  }
+
+  .prose-width {
+    max-width: 68ch;
+  }
+
+  /* Fondo del header sticky — 02_diseno.md §6.1 (color-mix + blur exactos) */
+  .header-surface {
+    background-color: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+  }
+
+  /* Escala tipográfica — 02_diseno.md §5.2 (móvil por defecto, ≥768px en media query) */
+  .text-display {
+    font-size: 2rem; /* 32px */
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) {
+    .text-display {
+      font-size: 3rem; /* 48px */
+    }
+  }
+
+  .text-h1 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 1.15;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) {
+    .text-h1 {
+      font-size: 2.5rem; /* 40px */
+    }
+  }
+
+  .text-h2 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.25;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .text-h2 {
+      font-size: 1.75rem; /* 28px */
+    }
+  }
+
+  .text-h3 {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.35;
+    font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .text-h3 {
+      font-size: 1.25rem; /* 20px */
+    }
+  }
+
+  .text-body {
+    font-size: 1rem; /* 16px */
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .text-body {
+      font-size: 1.0625rem; /* 17px */
+    }
+  }
+
+  .text-small {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  .text-mono {
+    font-family: var(--font-mono);
+    font-size: 0.75rem; /* 12px */
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  @media (min-width: 768px) {
+    .text-mono {
+      font-size: 0.8125rem; /* 13px */
+    }
+  }
+
+  .text-metric {
+    font-size: 1.75rem; /* 28px */
+    line-height: 1;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  @media (min-width: 768px) {
+    .text-metric {
+      font-size: 2rem; /* 32px */
+    }
+  }
+}
