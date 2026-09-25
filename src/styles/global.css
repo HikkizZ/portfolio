@@ -102,13 +102,22 @@
   }
 
   main {
+    display: flex;
     flex: 1;
+    flex-direction: column;
   }
 
   /* Evita que transition-colors (que incluye outline-color) anime la
      aparición del anillo de foco desde currentColor hasta --focus. */
   * {
     outline-color: var(--focus);
+  }
+
+  /* Revisión de diseño #2, hallazgo #9 / 02_diseno.md §13.6: durante el
+     cambio de tema no debe animarse nada, ni siquiera las transition-colors
+     de links/botones/badges. ThemeToggle.astro agrega esta clase un frame. */
+  .no-transitions * {
+    transition: none !important;
   }
 
   :focus-visible {
@@ -235,7 +244,7 @@
   }
 
   .project-prose > div.border-l-2:first-of-type {
-    margin-top: 48px;
+    margin-top: 0;
   }
 
   @media (min-width: 768px) {
